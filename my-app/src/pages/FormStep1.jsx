@@ -22,7 +22,9 @@ const FormStep1 = () => {
   const handleDiscountOffersChange = (e) => setDiscountOffers(e.target.value);
   const handleProductImageChange = (e) => setProductImage(e.target.files[0]);
 
-  const handleNextClick = () => {
+  const sleep = ms => new Promise(r => setTimeout(r, ms));
+
+  const handleNextClick = async () => {
     console.log({
       companyName,
       companyDescription,
@@ -32,7 +34,7 @@ const FormStep1 = () => {
       discountOffers,
       productImage,
     });
-
+    let parsedDescriptions=[];
     const getGBT = async () => {
       try {
         console.log("GET GBT!!");
@@ -48,7 +50,7 @@ const FormStep1 = () => {
                   "You are a automated social media content generator",
               },
               { role: "user", content: `Make 4 descriptions of a designed image that will generate a designed post through dall-e using the following information:
-              Company Name: ${companyName}, Company description: ${companyDescription}, ideal marketing: ${idealMarketing}, product they want to market: ${productToMarket}, important links to include: ${websiteLinks}, discount offers: ${discountOffers}. Put it in a numbered sturcture like 1.Description` },
+              Company Name: ${companyName}, Company description: ${companyDescription}, ideal marketing: ${idealMarketing}, product they want to market: ${productToMarket}, important links to include: ${websiteLinks}, discount offers: ${discountOffers}. Put it in a numbered structure like Description:` },
             ],
           },
           {
@@ -59,14 +61,64 @@ const FormStep1 = () => {
           }
         );
 
-        console.log(response.data);
-        console.log(response.data.choices[0].message.content)
+        // console.log(response.data);
+        // console.log(response.data.choices[0].message.content)
+
+        const descriptions = response.data.choices[0].message.content;
+        
+        parsedDescriptions = descriptions.split("Description");
+        console.log(parsedDescriptions);
       } catch (error) {
         console.error(error);
       }
     };
 
-    getGBT();
+    const getImages = async () => {
+      try {
+        console.log("GET IMAGES!!!");
+        await getGBT();
+        const images = [];
+        console.log("In Images Parsed BS: ")
+        console.log("all" + parsedDescriptions);
+        console.log("first" + parsedDescriptions[1])
+        for (let i =1; i < 5; i++) {
+          console.log("Image Request" + parsedDescriptions[i])
+          const response = await axios.post(
+            "https://api.openai.com/v1/images/generations",
+            {
+              model: "dall-e-3",
+              prompt: parsedDescriptions[i],
+              n: 1,
+              size: "1024x1024",
+            },
+            {
+              headers: {
+                "Content-Type": "application/json",
+                Authorization: `Bearer ${OPENAI_API_KEY}`, // Replace with your actual OpenAI API key
+              },
+            }
+          );
+    
+          console.log(response.data);
+    
+          const image = response.data.data[0].url;
+          console.log(image);
+          images.push(image);
+        }
+    
+        console.log(images);
+    
+        // Now 'images' array contains the generated images for each description
+        // You can use these images as needed in your application
+    
+      } catch (error) {
+        console.error(error);
+      }
+    };
+    
+
+    
+    getImages();
   };
 
   return (
