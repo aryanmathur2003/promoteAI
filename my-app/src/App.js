@@ -7,12 +7,13 @@ import Dashboard from "./pages/Dashboard";
 import { useState } from "react";
 
 function App() {
-  const [searchResult, setSearchResult] = useState(null);
+  const [searchResult, setSearchResult] = useState([]);
 
   const handleSearchResult = (result) => {
     setSearchResult(result);
-    console.log("IMAGESSSSS!!!!::::" +searchResult);
+    console.log("IMAGES: " + searchResult);
   };
+  
   return (
     <div className="h-screen w-full">
       <div className="absolute w-full flex flex-row justify-end">

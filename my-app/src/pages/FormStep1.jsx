@@ -23,7 +23,6 @@ const FormStep1 = ({ setSearchResult }) => {
   const handleProductImageChange = (e) => setProductImage(e.target.files[0]);
 
   const sleep = (ms) => new Promise((r) => setTimeout(r, ms));
-
   const handleNextClick = async () => {
     console.log({
       companyName,
@@ -35,6 +34,7 @@ const FormStep1 = ({ setSearchResult }) => {
       productImage,
     });
     let parsedDescriptions = [];
+    let parsedTweets = [];
     const getGBT = async () => {
       try {
         console.log("GET GBT!!");
@@ -109,6 +109,7 @@ const FormStep1 = ({ setSearchResult }) => {
         const tweets = response.data.choices[0].message.content;
 
         let allTweets = tweets.split("Description");
+        parsedTweets = allTweets
         console.log("Twitter Posts" + allTweets);
       } catch (error) {
         console.error(error);
@@ -149,6 +150,36 @@ const FormStep1 = ({ setSearchResult }) => {
         }
         console.log(images);
         setSearchResult(images);
+        const url = `http://127.0.0.1:8000/createImage/`;
+        fetch(url, {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            string1: images[0],
+            string2: images[1],
+            string3: images[2],
+            string4: images[3],
+            tweet1: parsedTweets[0],
+            tweet2: parsedTweets[1],
+            tweet3: parsedTweets[2],
+            tweet4: parsedTweets[3],
+          }),
+        })
+          .then((response) => {
+            if (!response.ok) {
+              throw new Error(`HTTP error! Status: ${response.status}`);
+            }
+            return response.json();
+          })
+          .then((data) => {
+            console.log("GET request response:", data);
+            setSearchResult(data);
+          })
+          .catch((error) => {
+            console.error("Error making GET request:", error);
+          });
 
         // Now 'images' array contains the generated images for each description
         // You can use these images as needed in your application
