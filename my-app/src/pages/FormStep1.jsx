@@ -75,10 +75,51 @@ const FormStep1 = ({ setImages }) => {
       }
     };
 
+    const getTweets = async () => {
+      try {
+        console.log("GET TWEETS!!");
+
+        const response = await axios.post(
+          "https://api.openai.com/v1/chat/completions",
+          {
+            model: "gpt-4",
+            messages: [
+              {
+                role: "system",
+                content: "You are a automated social media content generator",
+              },
+              {
+                role: "user",
+                content: `Make 4 tweets for twitter with 1 sentence that can help the company market to its customers
+              Company Name: ${companyName}, Company description: ${companyDescription}, ideal marketing: ${idealMarketing}, product they want to market: ${productToMarket}, important links to include: ${websiteLinks}, discount offers: ${discountOffers}. Put it in a numbered structure like Tweet:`,
+              },
+            ],
+          },
+          {
+            headers: {
+              "Content-Type": "application/json",
+              Authorization: `Bearer ${OPENAI_API_KEY}`, // Replace with your actual OpenAI API key
+            },
+          }
+        );
+
+        // console.log(response.data);
+        // console.log(response.data.choices[0].message.content)
+
+        const tweets = response.data.choices[0].message.content;
+
+        let allTweets = tweets.split("Description");
+        console.log("Twitter Posts"+ allTweets);
+      } catch (error) {
+        console.error(error);
+      }
+    };
+
     const getImages = async () => {
       try {
         console.log("GET IMAGES!!!");
         await getGBT();
+        await getTweets();
         const images = [];
         console.log("In Images Parsed BS: ");
         console.log("all" + parsedDescriptions);
