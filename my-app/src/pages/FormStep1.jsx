@@ -45,9 +45,10 @@ const FormStep1 = () => {
               {
                 role: "system",
                 content:
-                  "Give life advice for a struggling computer science student...",
+                  "You are a automated social media content generator",
               },
-              { role: "user", content: "Give me help please!!!" },
+              { role: "user", content: `Make 4 descriptions of a designed image that will generate a designed post through dall-e using the following information:
+              Company Name: ${companyName}, Company description: ${companyDescription}, ideal marketing: ${idealMarketing}, product they want to market: ${productToMarket}, important links to include: ${websiteLinks}, discount offers: ${discountOffers}. Put it in a numbered sturcture like 1.Description` },
             ],
           },
           {
@@ -59,6 +60,7 @@ const FormStep1 = () => {
         );
 
         console.log(response.data);
+        console.log(response.data.choices[0].message.content)
       } catch (error) {
         console.error(error);
       }

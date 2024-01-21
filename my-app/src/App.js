@@ -9,9 +9,9 @@ function App() {
   return (
     <div className="h-screen w-full">
       <div className="absolute w-full flex flex-row justify-end">
-        <div href="/dashboard" className="bg-slate-200 px-4 py-2  mx-6 my-4 rounded-full bg-opacity-70 hover:bg-opacity-100 text-xl">
-          Dashboard
-        </div>
+          <div href="/dashboard" className="bg-slate-200 px-4 py-2  mx-6 my-4 rounded-full bg-opacity-70 hover:bg-opacity-100 text-xl">
+            Dashboard
+          </div>
       </div>
       <BrowserRouter>
         <Routes>
