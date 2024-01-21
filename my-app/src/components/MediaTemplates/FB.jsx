@@ -1,11 +1,13 @@
-const FB = () => {
+const FB = (props) => {
+  const { profilePicture, username, imageSrc, description } = props;
     return (
       <div class="max-w-md mx-auto bg-white shadow-md rounded-md overflow-hidden">
         {/* Post Header */}
         <div class="flex items-center p-4 border-b">
-          {/*<img src="profile-picture.jpg" alt="Profile Picture" class="w-10 h-10 rounded-full mr-2"></img>*/}
+          
+        <img src={profilePicture} class="w-10 h-10 rounded-full mr-2"/>
           <div>
-            <p class="font-semibold text-gray-800">John Doe</p>
+            <p class="font-semibold text-gray-800">{username}</p>
             <p class="text-gray-500 text-sm">Posted 2 hours ago</p>
           </div>
         </div>
@@ -13,17 +15,12 @@ const FB = () => {
         {/* Post Content */}
         <div class="p-4">
           <p class="text-gray-800">
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do
-            eiusmod tempor incididunt ut labore et dolore magna aliqua.
+            {description}
           </p>
         </div>
 
         {/* Post Image (if applicable)  */}
-        <img
-          src="my-app/src/media/waterbottle.jpeg"
-          alt="Post Image"
-          class="w-full h-64 object-cover"
-        />
+        <img src={imageSrc} />
 
         {/* Post Actions */}
         <div class="flex items-center justify-between p-4 border-t">

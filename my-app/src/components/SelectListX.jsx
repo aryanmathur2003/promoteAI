@@ -26,7 +26,12 @@ const SelectListX = () => {
               : "border-dashed border-2 border-slate-400"
           }`}
         >
-          <X />
+          <X
+            profilePicture="https://picsum.photos/id/244/900/900"
+            username="Company Name"
+            imageSrc="https://picsum.photos/id/244/900/900"
+            description="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
+          />
         </div>
       ))}
     </div>
