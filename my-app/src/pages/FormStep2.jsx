@@ -10,50 +10,78 @@ const FormStep2 = () => {
   return (
     <div className="bg-gradient-to-bl from-blue-500 to-purple-500 h-full w-full py-32">
       <div className="bg-white w-5/12 m-auto h-auto rounded-3xl shadow-md p-12">
-        <div className="text-color text-2xl mb-4 font-semibold">
+        <div className="text-color text-4xl mb-4 font-semibold mb-6">
           Link Social Media Accounts
         </div>
         <div>
           {/*
             Instagram Link
           */}
-          <div className="flex flex-row bg-gradient-to-br from-indigo-400 via-purple-600 to-pink-500 w-full h-16 p-4 pl-6 rounded-full text-3xl items-center mb-4 text-neutral-200">
+          <div className="shadow-md flex flex-row bg-gradient-to-br from-indigo-400 via-purple-600 to-pink-500 w-full h-16 p-4 pl-6 rounded-full text-3xl items-center mb-6 text-neutral-200">
             <AiFillInstagram />
-            <a className="mx-auto">Link Instagram</a>
+            <a
+              href="https://www.instagram.com/"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="mx-auto"
+            >
+              Link Instagram
+            </a>
           </div>
         </div>
         <div>
           {/*
             LinkedIn Link
           */}
-          <div className="flex flex-row bg-gradient-to-br from-blue-500 via-blue-600 to-blue-700 w-full h-16 p-4 pl-6 rounded-full text-3xl items-center mb-4 text-neutral-200">
+          <div className="shadow-md flex flex-row bg-gradient-to-br from-blue-500 via-blue-600 to-blue-700 w-full h-16 p-4 pl-6 rounded-full text-3xl items-center mb-6 text-neutral-200">
             <AiFillLinkedin />
-            <a className="mx-auto">Link LinkedIn</a>
+            <a
+              href="https://www.linkedin.com/"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="mx-auto"
+            >
+              Link LinkedIn
+            </a>
           </div>
         </div>
         <div>
           {/*
             Twitter Link
           */}
-          <div className="flex flex-row bg-gradient-to-br from-neutral-600 to-neutral-950 w-full h-16 p-4 pl-6 rounded-full text-3xl items-center mb-4 text-neutral-200">
+          <div className="shadow-md flex flex-row bg-gradient-to-br from-neutral-600 to-neutral-950 w-full h-16 p-4 pl-6 rounded-full text-3xl items-center mb-6 text-neutral-200">
             <AiFillTwitterSquare />
-            <a className="mx-auto">Link X/Twitter</a>
+            <a
+              href="https://twitter.com/"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="mx-auto"
+            >
+              Link Twitter
+            </a>
           </div>
         </div>
         <div>
           {/*
             Facebook Link
           */}
-          <div className="flex flex-row bg-gradient-to-br from-blue-800 via-blue-900 to-indigo-900 w-full h-16 p-4 pl-6 rounded-full text-3xl items-center mb-4 text-neutral-200">
+          <div className="shadow-md flex flex-row bg-gradient-to-br from-blue-800 via-blue-900 to-indigo-900 w-full h-16 p-4 pl-6 rounded-full text-3xl items-center mb-10 text-neutral-200">
             <AiFillFacebook />
-            <a className="mx-auto">Link Facebook</a>
+            <a
+              href="https://www.facebook.com/"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="mx-auto"
+            >
+              Link Facebook
+            </a>
           </div>
         </div>
         <div>
           <div className="flex flex-row-reverse">
             <a
               class="group flex items-center justify-between gap-4 rounded-lg border border-current px-5 py-3 text-indigo-600 transition-colors hover:bg-indigo-600 focus:outline-none focus:ring active:bg-indigo-500"
-              href="/download"
+              href="/select"
             >
               <span class="font-medium transition-colors group-hover:text-white">
                 {" "}
