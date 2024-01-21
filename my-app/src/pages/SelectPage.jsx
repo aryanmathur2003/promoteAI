@@ -11,7 +11,7 @@ const commonProps = {
     "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
 };
 
-const SeelctPage = () => {
+const SeelctPage = ({props}) => {
   return (
     <div className="bg-gradient-to-bl from-blue-500 to-purple-500 h-full w-full px-24 py-20">
       <div className="bg-white h-full rounded-lg px-8 pt-4 shadow-md overflow-auto">

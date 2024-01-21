@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import axios from "axios";
 import OPENAI_API_KEY from "../config/openai";
 
-const FormStep1 = () => {
+const FormStep1 = ({ setImages }) => {
   const [companyName, setCompanyName] = useState("");
   const [companyDescription, setCompanyDescription] = useState("");
   const [idealMarketing, setIdealMarketing] = useState("");
@@ -22,7 +22,7 @@ const FormStep1 = () => {
   const handleDiscountOffersChange = (e) => setDiscountOffers(e.target.value);
   const handleProductImageChange = (e) => setProductImage(e.target.files[0]);
 
-  const sleep = ms => new Promise(r => setTimeout(r, ms));
+  const sleep = (ms) => new Promise((r) => setTimeout(r, ms));
 
   const handleNextClick = async () => {
     console.log({
@@ -34,7 +34,7 @@ const FormStep1 = () => {
       discountOffers,
       productImage,
     });
-    let parsedDescriptions=[];
+    let parsedDescriptions = [];
     const getGBT = async () => {
       try {
         console.log("GET GBT!!");
@@ -46,11 +46,13 @@ const FormStep1 = () => {
             messages: [
               {
                 role: "system",
-                content:
-                  "You are a automated social media content generator",
+                content: "You are a automated social media content generator",
               },
-              { role: "user", content: `Make 4 descriptions of a designed image that will generate a designed post through dall-e using the following information:
-              Company Name: ${companyName}, Company description: ${companyDescription}, ideal marketing: ${idealMarketing}, product they want to market: ${productToMarket}, important links to include: ${websiteLinks}, discount offers: ${discountOffers}. Put it in a numbered structure like Description:` },
+              {
+                role: "user",
+                content: `Make 4 descriptions of a designed image that will generate a designed post through dall-e using the following information:
+              Company Name: ${companyName}, Company description: ${companyDescription}, ideal marketing: ${idealMarketing}, product they want to market: ${productToMarket}, important links to include: ${websiteLinks}, discount offers: ${discountOffers}. Put it in a numbered structure like Description:`,
+              },
             ],
           },
           {
@@ -65,7 +67,7 @@ const FormStep1 = () => {
         // console.log(response.data.choices[0].message.content)
 
         const descriptions = response.data.choices[0].message.content;
-        
+
         parsedDescriptions = descriptions.split("Description");
         console.log(parsedDescriptions);
       } catch (error) {
@@ -78,11 +80,11 @@ const FormStep1 = () => {
         console.log("GET IMAGES!!!");
         await getGBT();
         const images = [];
-        console.log("In Images Parsed BS: ")
+        console.log("In Images Parsed BS: ");
         console.log("all" + parsedDescriptions);
-        console.log("first" + parsedDescriptions[1])
-        for (let i =1; i < 5; i++) {
-          console.log("Image Request" + parsedDescriptions[i])
+        console.log("first" + parsedDescriptions[1]);
+        for (let i = 1; i < 5; i++) {
+          console.log("Image Request" + parsedDescriptions[i]);
           const response = await axios.post(
             "https://api.openai.com/v1/images/generations",
             {
@@ -98,26 +100,24 @@ const FormStep1 = () => {
               },
             }
           );
-    
+
           console.log(response.data);
-    
+
           const image = response.data.data[0].url;
           console.log(image);
           images.push(image);
         }
-    
+        setImages(images);
+
         console.log(images);
-    
+
         // Now 'images' array contains the generated images for each description
         // You can use these images as needed in your application
-    
       } catch (error) {
         console.error(error);
       }
     };
-    
 
-    
     getImages();
   };
 
