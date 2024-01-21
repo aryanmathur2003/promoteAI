@@ -7,10 +7,11 @@ import Dashboard from "./pages/Dashboard";
 import { useState } from "react";
 
 function App() {
-  const [images, setImages] = useState(null);
-  const handleImages = (result) => {
-    setImages(result);
-    console.log("IMAGESSSSS!!!!::::" +images);
+  const [searchResult, setSearchResult] = useState(null);
+
+  const handleSearchResult = (result) => {
+    setSearchResult(result);
+    console.log("IMAGESSSSS!!!!::::" +searchResult);
   };
   return (
     <div className="h-screen w-full">
@@ -27,10 +28,10 @@ function App() {
           <Route path="/" element={<LoginPage />} />
           <Route
             path="/step1"
-            element={<FormStep1 setImages={handleImages} />}
+            element={<FormStep1 setSearchResult={handleSearchResult} />}
           />
           <Route path="/step2" element={<FormStep2 />} />
-          <Route path="/select" element={<SelectPage passimages={images}/>} />
+          <Route path="/select" element={<SelectPage passimages={searchResult} />} />
           <Route path="/dashboard" element={<Dashboard />} />
         </Routes>
       </BrowserRouter>
