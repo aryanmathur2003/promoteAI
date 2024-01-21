@@ -2,7 +2,7 @@ import React from 'react';
 
 const X = () => {
   return (
-    <div class="bg-gray-50 dark:bg-black p-10 flex items-center justify-center">
+    <div class="bg-gray-50 dark:bg-black flex items-center justify-center rounded-md">
   <div class="bg-white dark:bg-gray-800 border-gray-200 dark:border-gray-800 p-4 rounded-xl border max-w-xl">
     <div class="flex justify-between">
       <div class="flex items-center">
