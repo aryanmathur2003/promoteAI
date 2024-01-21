@@ -17,12 +17,12 @@ const SelectListFB = (props) => {
 
   return (
     <div className="flex flex-row ">
-      {components.map((component, index) => (
+      {imageSrc.map((image, index) => (
         <div
-          onClick={() => handleComponentClick(component)}
+          onClick={() => handleComponentClick(components[index])}
           key={index}
           className={`mr-10 p-4 bg-slate-200 rounded-lg ${
-            selectedComponent === component
+            selectedComponent === components[index]
               ? "border-solid border-4 border-purple-800"
               : "border-dashed border-2 border-slate-400"
           }`}
@@ -30,7 +30,7 @@ const SelectListFB = (props) => {
           <FB
             profilePicture={profilePicture}
             username={username}
-            imageSrc={imageSrc}
+            imageSrc={image}
             description={description}
           />
         </div>
