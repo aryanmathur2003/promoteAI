@@ -2,7 +2,7 @@ import React from 'react';
 
 const LinkedIn = () => {
   return (
-    <div class="bg-gray-100 p-3 flex items-center justify-center w-screen h-screen">
+    <div class="bg-gray-100 p-3 flex items-center justify-center">
         <div class="bg-white border shadow-sm px-4 py-3 rounded-lg max-w-lg">
             <div class="flex items-center">
                 <img class="h-12 w-12 rounded-full" src="https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80"/>

@@ -7,14 +7,14 @@ import SelectPage from "./pages/SelectPage";
 function App() {
   return (
     <div className="h-screen w-full">
-      {/* <BrowserRouter>
+      <BrowserRouter>
         <Routes>
           <Route path="/" element={<LoginPage />} />
           <Route path="/step1" element={<FormStep1 />} />
           <Route path="/step2" element={<FormStep2 />} />
+          <Route path="/select" element={<SelectPage />} />
         </Routes>
-      </BrowserRouter> */}
-      <SelectPage />
+      </BrowserRouter>
     </div>
   );
 }
