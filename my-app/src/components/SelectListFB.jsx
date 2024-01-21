@@ -1,7 +1,8 @@
 import React, { useState } from "react";
 import FB from "./MediaTemplates/FB.jsx";
 
-const SelectListFB = () => {
+const SelectListFB = (props) => {
+  const { profilePicture, username, imageSrc, description } = props;
   const components = [
     "Component 1",
     "Component 2",
@@ -27,10 +28,10 @@ const SelectListFB = () => {
           }`}
         >
           <FB
-            profilePicture="https://picsum.photos/id/244/900/900"
-            username="Company Name"
-            imageSrc="https://picsum.photos/id/244/900/900"
-            description="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
+            profilePicture={profilePicture}
+            username={username}
+            imageSrc={imageSrc}
+            description={description}
           />
         </div>
       ))}

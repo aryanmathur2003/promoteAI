@@ -3,6 +3,14 @@ import SelectListInsta from "../components/SelectListInsta";
 import SelectListLI from "../components/SelectListLinkedIn";
 import SelectListX from "../components/SelectListX";
 
+const commonProps = {
+  profilePicture: "https://picsum.photos/id/244/900/900",
+  username: "Company Name",
+  imageSrc: "https://picsum.photos/id/244/900/900",
+  description:
+    "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+};
+
 const SeelctPage = () => {
   return (
     <div className="bg-gradient-to-bl from-blue-500 to-purple-500 h-full w-full px-24 py-20">
@@ -12,19 +20,19 @@ const SeelctPage = () => {
         </div>
         <a className="ml-8 font-semibold text-3xl mb-4">Instagram</a>
         <div className="p-8 pl-32">
-          <SelectListInsta />
+          <SelectListInsta {...commonProps} />
         </div>
         <a className="ml-8 font-semibold text-3xl mb-4">Facebook</a>
         <div className="p-8 pl-32">
-          <SelectListFB />
+          <SelectListFB {...commonProps} />
         </div>
         <a className="ml-8 font-semibold text-3xl mb-4">X/Twitter</a>
         <div className="p-8 pl-32">
-          <SelectListX />
+          <SelectListX {...commonProps} />
         </div>
         <a className="ml-8 font-semibold text-3xl mb-4">LinkedIn</a>
         <div className="p-8 pl-32">
-          <SelectListLI />
+          <SelectListLI {...commonProps} />
         </div>
         <div>
           <div className="flex flex-row-reverse px-16 mb-8">
