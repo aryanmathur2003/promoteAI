@@ -1,7 +1,37 @@
-import React from "react";
+import {React, useState} from "react";
 import { Link } from "react-router-dom";
 
 const FormStep1 = () => {
+
+  const [companyName, setCompanyName] = useState("");
+  const [companyDescription, setCompanyDescription] = useState("");
+  const [idealMarketing, setIdealMarketing] = useState("");
+  const [productToMarket, setProductToMarket] = useState("");
+  const [websiteLinks, setWebsiteLinks] = useState("");
+  const [discountOffers, setDiscountOffers] = useState("");
+  const [productImage, setProductImage] = useState(null);
+
+  // Event handlers to update state variables
+  const handleCompanyNameChange = (e) => setCompanyName(e.target.value);
+  const handleCompanyDescriptionChange = (e) => setCompanyDescription(e.target.value);
+  const handleIdealMarketingChange = (e) => setIdealMarketing(e.target.value);
+  const handleProductToMarketChange = (e) => setProductToMarket(e.target.value);
+  const handleWebsiteLinksChange = (e) => setWebsiteLinks(e.target.value);
+  const handleDiscountOffersChange = (e) => setDiscountOffers(e.target.value);
+  const handleProductImageChange = (e) => setProductImage(e.target.files[0]);
+  
+    const handleNextClick = () => {
+      console.log({
+        companyName,
+        companyDescription,
+        idealMarketing,
+        productToMarket,
+        websiteLinks,
+        discountOffers,
+        productImage,
+      });
+    };
+  
   return (
     <div className="bg-gradient-to-bl from-blue-500 to-purple-500 h-full w-full py-32">
       <div className="bg-white w-5/12 m-auto h-auto rounded-3xl shadow-md p-12">
@@ -20,6 +50,7 @@ const FormStep1 = () => {
             type="text"
             id="companyName"
             placeholder="Enter your company name"
+            onChange={handleCompanyNameChange}
           />
         </div>
         <div className="mb-4">
@@ -33,6 +64,7 @@ const FormStep1 = () => {
             className="w-full  border border-gray-400 rounded-md py-2 px-4 resize-none focus:outline-none focus:border-blue-500"
             id="companyDescription"
             placeholder="Enter your company description"
+            onChange={handleCompanyDescriptionChange}
           ></textarea>
         </div>
         <div className="mb-4">
@@ -47,6 +79,7 @@ const FormStep1 = () => {
             type="text"
             id="idealMarketing"
             placeholder="Enter ideal marketing strategy"
+            onChange={handleIdealMarketingChange}
           />
         </div>
         <div className="mb-4">
@@ -61,6 +94,7 @@ const FormStep1 = () => {
             type="text"
             id="productToMarket"
             placeholder="Enter the product you want to market"
+            onChange={handleProductToMarketChange}
           />
         </div>
         <div className="mb-4">
@@ -75,6 +109,7 @@ const FormStep1 = () => {
             type="url"
             id="websiteLinks"
             placeholder="Enter links to your website"
+            onChange={handleWebsiteLinksChange}
           />
         </div>
         <div className="mb-4">
@@ -89,6 +124,7 @@ const FormStep1 = () => {
             type="text"
             id="discountOffers"
             placeholder="Enter discount offers"
+            onChange={handleDiscountOffersChange}
           />
         </div>
         <div className="mb-4">
@@ -103,12 +139,14 @@ const FormStep1 = () => {
             type="file"
             id="productImage"
             accept="image/*"
+            onChange={handleProductImageChange}
           />
         </div>
         <div>
           <div className="flex flex-row-reverse">
             <Link to="/step2">
               <a
+                onClick={handleNextClick}
                 class="group flex items-center justify-between gap-4 rounded-lg border border-current px-5 py-3 text-indigo-600 transition-colors hover:bg-indigo-600 focus:outline-none focus:ring active:bg-indigo-500"
                 href="/download"
               >
