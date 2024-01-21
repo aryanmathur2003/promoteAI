@@ -1,8 +1,9 @@
-import {React, useState} from "react";
+import { React, useState } from "react";
 import { Link } from "react-router-dom";
+import axios from "axios";
+import OPENAI_API_KEY from "../config/openai";
 
 const FormStep1 = () => {
-
   const [companyName, setCompanyName] = useState("");
   const [companyDescription, setCompanyDescription] = useState("");
   const [idealMarketing, setIdealMarketing] = useState("");
@@ -13,25 +14,59 @@ const FormStep1 = () => {
 
   // Event handlers to update state variables
   const handleCompanyNameChange = (e) => setCompanyName(e.target.value);
-  const handleCompanyDescriptionChange = (e) => setCompanyDescription(e.target.value);
+  const handleCompanyDescriptionChange = (e) =>
+    setCompanyDescription(e.target.value);
   const handleIdealMarketingChange = (e) => setIdealMarketing(e.target.value);
   const handleProductToMarketChange = (e) => setProductToMarket(e.target.value);
   const handleWebsiteLinksChange = (e) => setWebsiteLinks(e.target.value);
   const handleDiscountOffersChange = (e) => setDiscountOffers(e.target.value);
   const handleProductImageChange = (e) => setProductImage(e.target.files[0]);
-  
-    const handleNextClick = () => {
-      console.log({
-        companyName,
-        companyDescription,
-        idealMarketing,
-        productToMarket,
-        websiteLinks,
-        discountOffers,
-        productImage,
-      });
+
+  const handleNextClick = () => {
+    console.log({
+      companyName,
+      companyDescription,
+      idealMarketing,
+      productToMarket,
+      websiteLinks,
+      discountOffers,
+      productImage,
+    });
+
+    const getGBT = async () => {
+      try {
+        console.log("GET GBT!!");
+
+        const response = await axios.post(
+          "https://api.openai.com/v1/chat/completions",
+          {
+            model: "gpt-4",
+            messages: [
+              {
+                role: "system",
+                content:
+                  "Give life advice for a struggling computer science student...",
+              },
+              { role: "user", content: "Give me help please!!!" },
+            ],
+          },
+          {
+            headers: {
+              "Content-Type": "application/json",
+              Authorization: `Bearer ${OPENAI_API_KEY}`, // Replace with your actual OpenAI API key
+            },
+          }
+        );
+
+        console.log(response.data);
+      } catch (error) {
+        console.error(error);
+      }
     };
-  
+
+    getGBT();
+  };
+
   return (
     <div className="bg-gradient-to-bl from-blue-500 to-purple-500 h-full w-full py-32">
       <div className="bg-white w-5/12 m-auto h-auto rounded-3xl shadow-md p-12">
