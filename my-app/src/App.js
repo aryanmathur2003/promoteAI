@@ -3,6 +3,7 @@ import FormStep2 from "./pages/FormStep2";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import LoginPage from "./pages/LoginPage";
 import SelectPage from "./pages/SelectPage";
+import Dashboard from "./pages/Dashboard";
 
 function App() {
   return (
